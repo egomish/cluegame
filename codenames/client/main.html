@@ -1,0 +1,49 @@
+<head>
+<title>codenames</title>
+</head>
+
+<template name="Home">
+    <h1>Codenames!</h1>
+
+    <button id='create_game'>Create Game </button>
+    <button id='DEBUG_clear_database'>DEBUG Clear Database </button>
+
+    {{#each details}}
+    <br>	
+    <a href="/spymaster/{{this._id}}">SpyMaster {{this._id}}</a>
+
+    <a href="/player/{{this._id}}">Player {{this._id}}</a>
+
+    {{/each}}
+
+</template>
+
+<template name="SpymasterView">
+    {{game_id}}
+    <table>
+        {{#each codenamelist}}
+        <tr>
+            {{#each this}}
+            <td style="background-color:{{this.faction}}">{{this.name}}</td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </table>
+</template>
+
+<template name="PlayerView">
+    {{game_id}}
+    <table>
+        {{#each codenamelist}}
+        <tr>
+            {{#each this}}
+                {{#if this.guessed}}
+                    <td style="background-color:{{this.faction}}">{{this.name}}</td>
+                {{else}}
+                    <td class="codename">{{this.name}}</td>
+                {{/if}}
+            {{/each}}
+        </tr>
+        {{/each}}
+    </table>
+</template>
